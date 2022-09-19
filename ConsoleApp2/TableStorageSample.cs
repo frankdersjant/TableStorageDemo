@@ -27,9 +27,6 @@ namespace AzureCustomerTable
             await UpdateRecordInTable(cloudTable);
             GetAllCustomers(cloudTable);
             
-            //TODO
-            // await DeleteRecordinTable(cloudTable);
-
         }
 
         public List<Customer> GetAllCustomers(CloudTable cloudTable)
@@ -90,7 +87,7 @@ namespace AzureCustomerTable
             }
         }
         
-        public static async Task<Customer> RetrieveRecord(CloudTable table, string partitionKey, string rowKey)
+        private static async Task<Customer> RetrieveRecord(CloudTable table, string partitionKey, string rowKey)
         {
             TableOperation tableOperation = TableOperation.Retrieve<Customer>(partitionKey, rowKey);
             TableResult tableResult = await table.ExecuteAsync(tableOperation);
